@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import {Injectable} from '@angular/core';
 
 export class post1{
   constructor(
@@ -64,7 +65,33 @@ var POSTS: post1[]=[];
     this.items.push({Title: title1, Text: text, SubReddit: subreddit});
     this.msgVal = '';
   }
+///////////////////////////////////////////////////////////////////////////////////////
 
+  findPost(start, end): FirebaseListObservable<any[]> {
+    return this.(this.posts, {
+      query: {
+        orderByPost: 'title1',
+        limitToFirst: 6,
+        startAt: start,
+        endAt: end
+      }
+    });
+  }
+
+  deleteAll(): void {
+    this.items.remove().catch(error => this.handleError(error));
+  }
+
+  updatePost(key: string, value: any): void {
+    this.items.update(key, value).catch(error => this.handleError(error));
+  }
+
+  deletePost(key: string): void {
+    this.items.remove(key).catch(error => this.handleError(error));
+  }
+
+
+//////////////////////////////////////////////////////////////////////////////////////
   title = 'My ReDDit app';
   //selectedPost: post1;
     posts = POSTS;
@@ -72,5 +99,6 @@ var POSTS: post1[]=[];
   //   //this.selectedPost=post1;
   //   POSTS.push(new post1(title1,text,subreddit));
   // }
+
 }
 
