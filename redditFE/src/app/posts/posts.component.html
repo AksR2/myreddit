@@ -1,20 +1,31 @@
 <div class="row">
-    <div class="form-group col-sm-2">
-        <label for="insertPost">Insert Post:</label>
-        <input class="form-control" type="text" placeholder="title" [(ngModel)]="this.newPost.title" [ngModelOptions]="{standalone: true}"/>
-        <input class="form-control" type="text" placeholder="text" [(ngModel)]="this.newPost.text" [ngModelOptions]="{standalone: true}"/>
-        <input class="form-control" type="text" placeholder="subreddit" [(ngModel)]="this.newPost.subreddit" [ngModelOptions]="{standalone: true}"/>
-        <button class="btn btn-default" (click)="insertPost()"> Insert Post </button>
+    <div class="col-sm-8">
+        <form>
+        <h3 class="searchBytitle" color="BlueViolet">Search by name:</h3>
+        <mat-form-field><input class="form-control" color="primary" matInput #title1 type="text" placeholder="name" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <button mat-raised-button color="primary" class="searchbutton" (click)="getPosts()">Search</button>
+        <button mat-raised-button color="primary" class="btn btn-default" (click)="clearSearch()">Clear</button>
+    </form>        
     </div>
-    <div class="form-group col-sm-2">
+</div>
+<div class="row">
+    <div>
+        <label for="insertPost" color="primary">Insert Post:</label>
+        <mat-form-field><input class="titledisp" matInput #titledisp type="text" placeholder="title" [(ngModel)]="this.newPost.title" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <mat-form-field><input class="textdisp" matInput #textdisp type="text" placeholder="text" [(ngModel)]="this.newPost.text" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <mat-form-field><input class="subredditdisp" matInput #subredditdisp type="text" placeholder="subreddit" [(ngModel)]="this.newPost.subreddit" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <button mat-raised-button color="primary" class="checkinsert" (click)="insertPost()"> Insert Post </button>
+    </div>
+    <!-- <div class="form-group col-sm-2">
         <label for="editPost">Edit Post:</label>
         <input class="form-control" type="text" placeholder="title" [(ngModel)]="this.editPost.title" [ngModelOptions]="{standalone: true}"/>
         <input class="form-control" type="text" placeholder="text" [(ngModel)]="this.editPost.text" [ngModelOptions]="{standalone: true}"/>
         <input class="form-control" type="text" placeholder="subreddit" [(ngModel)]="this.editPost.subreddit" [ngModelOptions]="{standalone: true}"/>
         <button class="btn btn-default" (click)="updatePost()"> Edit Post </button>
-    </div>
-    <div class="col-sm-8">
-        <div class="row">
+    </div> -->
+    
+    <div class="">
+        <!-- <div class="row">
                 <div class="col-sm-2">
                     <label for="title">title</label>
                 </div>
@@ -24,28 +35,21 @@
                 <div class="col-sm-2">
                     <label for="subreddit">subreddit</label>
                 </div>
-        </div>
+        </div> -->
         <div class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
-            <div class="col-sm-2">
-                {{post.title}}
-            </div>
-            <div class="col-sm-2">
-                {{post.text}}
-            </div>
-            <div class="col-sm-2">
-                {{post.subreddit}}
-            </div>
-            <div class="col-sm-2">
-                <button class="btn btn-default" (click)="deletePost(post)">Delete</button>
-            </div>
+            <div class=""><h2><a href="" color="accent">
+                {{post.title}}</a></h2>
+            </div><br>
+            <div class=""><p color="accent">
+                {{post.text}}</p>
+            </div><br>
+            <div class=""><p color="accent">
+                {{post.subreddit}}</p>
+            </div><br>
+            <div >
+                <button  mat-raised-button color="primary" class="checkdelete" (click)="deletePost(post)">Delete</button>
+            </div><br>
         </div>
     <div>
 </div>
-<div class="row">
-    <div class="col-sm-8">
-        <label for="searchBytitle">Search by name:</label>
-        <input class="form-control" type="text" placeholder="title" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/>
-        <button class="btn btn-default" (click)="getPosts()">Search</button>
-        <button class="btn btn-default" (click)="clearSearch()">Clear</button>        
-    </div>
-</div>
+

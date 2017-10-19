@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule,MatInputModule} from '@angular/material';
+import {FormArray} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 
@@ -16,7 +18,11 @@ import { PostService } from './services/posts.service';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatInputModule,
   ],
   providers: [
     PostService
