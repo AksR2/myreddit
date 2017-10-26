@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'My ReDDit app';
+  //currentNavItem='Page1';
 }
+export class SidenavOverviewExample {}

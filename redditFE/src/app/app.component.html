@@ -1,12 +1,30 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="https://store-images.microsoft.com/image/apps.41241.9007199266531616.d6aea9fa-72ae-43a6-8a56-acf6eabee527.50e41d98-a684-4998-a67e-00afa98b0344?w=180&h=180&q=60">
-</div>
-<div>
-  <posts></posts>
-</div>
 
-
+<mat-sidenav-container fullscreen height="100%" class="example-container">
+    <mat-sidenav mode="over" #sidenav class="example-sidenav">
+      <mat-toolbar color="primary">Hot</mat-toolbar><br>
+      <mat-toolbar color="accent">New</mat-toolbar><br>
+      <mat-toolbar color="primary">Rising</mat-toolbar><br>
+      <mat-toolbar color="accent">Gilded</mat-toolbar><br>
+      <mat-toolbar color="primary">Wiki</mat-toolbar><br>
+      <mat-toolbar color="primary">Popular</mat-toolbar><br>
+      <mat-toolbar color="accent">Random</mat-toolbar><br>
+      <mat-toolbar color="primary">All</mat-toolbar><br>
+      <mat-toolbar color="accent">Users</mat-toolbar><br>
+      <!-- <mat-toolbar color="primary">Wiki</mat-toolbar><br> -->
+    </mat-sidenav>
+    <div class="example-sidenav-content">
+      <button mat-mini-fab class="example-fab" (click)="sidenav.open()">
+        <mat-icon>nav</mat-icon>
+      </button>
+      </div>
+    <div style="text-align:center">
+        <h1>
+          Welcome to {{title}}!
+        </h1>
+        <img width="300" src="https://store-images.microsoft.com/image/apps.41241.9007199266531616.d6aea9fa-72ae-43a6-8a56-acf6eabee527.50e41d98-a684-4998-a67e-00afa98b0344?w=180&h=180&q=60">
+      </div>
+      <div>
+        <posts></posts>
+      </div>
+      
+</mat-sidenav-container>

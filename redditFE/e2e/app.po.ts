@@ -28,7 +28,7 @@ export class Postapp {
   checkbuttonSearch(){
     return element(by.className("searchbutton"));
   }
-  checkbuttonDelete(){
-    return element(by.className("checkdelete"));
-  }
+  // checkbuttonDelete(){
+  //   return element(by.className("checkdelete"));
+  // }
 }

@@ -6,10 +6,10 @@ import {MatButtonModule, MatCheckboxModule,MatInputModule} from '@angular/materi
 import {FormArray} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
-
+import {MatSidenavModule} from '@angular/material';
 import { PostComponent } from './posts/posts.component';
 import { PostService } from './services/posts.service';
-
+import {MatToolbarModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +23,8 @@ import { PostService } from './services/posts.service';
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   providers: [
     PostService

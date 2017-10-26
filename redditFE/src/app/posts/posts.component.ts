@@ -47,6 +47,9 @@ export class PostComponent implements OnInit {
       }
     )
   }
+  AppCtrl($scope) {
+      $scope.currentNavItem = 'page1';
+    }
 
    updatPost(post:Post) {
     this.postService
@@ -61,6 +64,7 @@ export class PostComponent implements OnInit {
       }
     )
   }
+  
 
   getPosts(){
     this.postService.getPosts(this.searchCriteria)
