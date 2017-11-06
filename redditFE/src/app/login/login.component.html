@@ -1,0 +1,18 @@
+<form (submit)="loginUser($event)"> 
+    <div class="alert">
+      <flash-messages></flash-messages>
+    </div>
+    <div>
+        <img width="300" src="https://store-images.microsoft.com/image/apps.41241.9007199266531616.d6aea9fa-72ae-43a6-8a56-acf6eabee527.50e41d98-a684-4998-a67e-00afa98b0344?w=180&h=180&q=60">        
+    </div>
+    <md-form-field class="example-full-width">
+        <input mdInput placeholder="Username" name="signinusername" [(ngModel)]="signinUser.username">
+    </md-form-field>
+    <md-form-field class="example-full-width">
+        <input type ="password" mdInput placeholder="Password" name="signinpassword" [(ngModel)]="signinUser.password">
+    </md-form-field>
+    <div class="input">    
+      <button color ="primary" id=signinbtn type ="submit" md-raised-button>Sign In</button>   
+      <button color ="primary" id=signupbtn routerLink="/regis-form" md-raised-button>Sign Up</button>
+    </div>
+  </form>
