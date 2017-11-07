@@ -10,12 +10,18 @@ import {MatSidenavModule} from '@angular/material';
 import { PostComponent } from './posts/posts.component';
 import { SubredditComponent } from './subreddit/subreddit.component';
 import { PostService } from './services/posts.service';
+import { LoginComponent} from './login/login.component';
 import {MatToolbarModule} from '@angular/material';
+import { AppRoutingModule }     from './app-routing.module';
+import { UserService } from './services/user.service';
+import { ValidateService} from './services/validate.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
-    SubredditComponent
+    SubredditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,11 +32,13 @@ import {MatToolbarModule} from '@angular/material';
     MatCheckboxModule,
     MatInputModule,
     MatSidenavModule,
-    MatToolbarModule
-    //SubredditComponent
+    MatToolbarModule,
+    AppRoutingModule
   ],
   providers: [
-    PostService
+    PostService,
+    UserService,
+    ValidateService
   ],
   bootstrap: [AppComponent]
 })

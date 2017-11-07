@@ -3,7 +3,7 @@ import { Post } from '../model/post';
 import { PostService} from '../services/posts.service';
 
 @Component({
-  selector: 'posts',
+  selector: 'app-posts',
   templateUrl: './posts.component.html',
 })
 export class PostComponent implements OnInit {
@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
     this.newPost = Post.CreateDefault();
     this.editPost = Post.CreateDefault();
     this.searchCriteria = '';
-    //this.getPosts();
+    this.getPosts();
   }
 
   deletePost(post:Post)

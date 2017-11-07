@@ -16,17 +16,23 @@ export class SubredditComponent implements OnInit {
   posts: SubredditPost[];
   newPost: SubredditPost;
   editPost: SubredditPost;
-  searchCriteria: string;
+  @Input() searchCriteria: string;
 
   constructor(
-    //private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private postService: PostService,
     //private location: Location
   ) {}
 
    ngOnInit(): void {
+    this.route.params
+    .subscribe(params => this.handleRouteChange(params));
+   }
+
+
+   handleRouteChange(params){
+    this.searchCriteria= params['name'];
     this.getPostssub();
-    this.searchCriteria;
    }
 
    getPostssub(){
