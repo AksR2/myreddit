@@ -51,12 +51,12 @@ router.post('/insertPost', function(req, res, next) {
       res.status(400);
       res.send();
     }
-    res.send({ id : newPost._id ,title:newPost.title,text:newPost.text,subreddit:newPost.subreddit});
+    res.send({ id : newPost._id });
   });
 });
-// _id : req.body.id,
+
 router.post('/deletePost', function(req, res, next) {
-  Post.remove({title : req.body.title,text : req.body.text}, function(err) {
+  Post.remove({_id : req.body.id}, function(err) {
     if (err) {
       console.log("not removed!");
       res.status(400);      
