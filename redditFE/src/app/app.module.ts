@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import {MatSidenavModule} from '@angular/material';
 import { PostComponent } from './posts/posts.component';
+import { SubredditComponent } from './subreddit/subreddit.component';
 import { PostService } from './services/posts.service';
 import {MatToolbarModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
+    SubredditComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import {MatToolbarModule} from '@angular/material';
     MatInputModule,
     MatSidenavModule,
     MatToolbarModule
+    //SubredditComponent
   ],
   providers: [
     PostService
@@ -32,3 +35,4 @@ import {MatToolbarModule} from '@angular/material';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-sm-8">
+        <form>
+        <h3 class="searchBysubreddit_cat" color="BlueViolet">Search by Categoty of subreddit:</h3>
+        <mat-form-field><input class="form-control" color="primary" matInput #title1 type="text" placeholder="Subreddit Category" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <button mat-raised-button color="primary" class="searchbutton" (click)="getPostssub()">Go</button>
+        <!-- <button mat-raised-button color="primary" class="btn btn-default" (click)="clearSearch()">Clear</button> -->
+    </form>        
+    </div>
+</div>
+
+<div class="">
+    <div class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
+        <div class=""><h2><a href="" color="accent">
+            {{post.user_name}}</a></h2>
+        </div><br>
+        <div class=""><p color="accent">
+            {{post.title}}</p>
+        </div><br>
+        <div class=""><p color="accent">
+            {{post.text}}</p>
+        </div><br>
+        <div class=""><p color="accent">
+            {{post.total_votes}}</p>
+        </div><br>
+        <div class=""><p color="accent">
+            {{post.subreddit_cat}}</p>
+        </div><br>
+        <div >
+            <button  mat-raised-button color="primary" class="checkdelete" (click)="deletePost(post)">Delete</button>
+        </div><br>
+    </div>
+<div>
+</div>
+
+<!-- <div class="row" *ngFor="let post of posts" (click)="getPostssub()">
+    <div class=""><h2><a href="" color="accent">
+        {{post.title}}</a></h2>
+    </div><br>
+    <div class=""><p color="accent">
+        {{post.text}}</p>
+    </div><br>
+    <div class=""><p color="accent">
+        {{post.subreddit}}</p>
+    </div><br>
+</div>
+<div>
+<button (click)="goBack()">go back</button>
+</div> -->
+<!-- <h1>prachi </h1> -->

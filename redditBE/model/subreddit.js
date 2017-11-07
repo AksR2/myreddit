@@ -2,10 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define a schema.
-var postSchema = new Schema({
+var subredditSchema = new Schema({
+  user_name: String,
   title: String,
   text: String,
-  subreddit: String,
+  total_votes: Number,
+  subreddit_cat: String
   //location: String
 });
 
@@ -19,6 +21,6 @@ var postSchema = new Schema({
 //   };
 
 // Create a model.
-var Post = mongoose.model('posts', postSchema);
+var subreddit = mongoose.model('subreddits', subredditSchema);
 
-module.exports = Post;
+module.exports = subreddit;

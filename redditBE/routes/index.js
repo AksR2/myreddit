@@ -1,5 +1,6 @@
 var express = require('express');
 var Post = require('../model/post');
+var subreddit = require('../model/subreddit');
 var mongoose = require('mongoose');
 
 var router = express.Router();
@@ -10,13 +11,33 @@ router.get('/getPosts', function(req, res, next) {
   if(req.query.title)
     searchQuery = { title: req.query.title };
 
+  console.log(Post);
   Post.find(searchQuery, function(err, posts){
     if (err) {
       res.status(400);      
       res.send();
     }
 
+    console.log(posts);
     console.log("returning all the posts.");
+    res.send(posts);
+  })
+});
+
+router.get('/getPostssub', function(req, res, next) {
+
+  var searchQuery = {};
+
+
+  if(req.query.subreddit_cat)
+    searchQuery = { subreddit_cat: req.query.subreddit_cat };
+  subreddit.find(searchQuery, function(err, posts){
+    if (err) {
+      console.log("Issue is here.....");
+      res.status(400);      
+      res.send();
+    }
+    console.log("returning all the posts in that subreddit.");
     res.send(posts);
   })
 });
@@ -27,12 +48,9 @@ router.post('/insertPost', function(req, res, next) {
 
   newPost.save(function(err) {
     if (err) {
-     // console.log("not saved!");
       res.status(400);
       res.send();
     }
-
-    //console.log("saved!");
     res.send({ id : newPost._id });
   });
 });
