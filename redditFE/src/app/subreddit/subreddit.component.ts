@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { SubredditPost } from '../model/subreddit';
 import { PostService} from '../services/posts.service';
 
+
 @Component({
   selector: 'subredditposts',
   templateUrl: './subreddit.component.html',

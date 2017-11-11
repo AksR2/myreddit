@@ -15,40 +15,84 @@ describe('mean-frontend App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to My ReDDit app!');
   });
-  it('should post title,text,subreddit on page and populate',()=>{
-    page1.navigateTo();
-    var input1=page1.posttitleonpage();
-    var input2=page1.posttextonpage();
-    var input3=page1.postsubredditonpage();
-    var input4=page1.checkbuttonInsert();
-    var input5=page1.checkbuttonSearch();
+  
+  it("should check whether the login form is submitting",()=>{
+    page.navigateTo();
+    var input1=page.checkloginform();
+    var input2=page.checkpwdform();
+    var input3=page.checksubmitbutton();
     input1.click();
-    input1.sendKeys("First title test entry for demo");
+    input1.sendKeys("Akshay");
     input2.click();
-    input2.sendKeys("First text test entry for demo");
+    input2.sendKeys("password");
     input3.click();
-    input3.sendKeys("First Subreddit test entry for demo");
-    input4.click();
-    input5.click();
-    browser.sleep(5000);
-  });
-  it('should post title,text,subreddit on page and populate',()=>{
-    page1.navigateTo();
-    var input1=page1.posttitleonpage();
-    var input2=page1.posttextonpage();
-    var input3=page1.postsubredditonpage();
-    var input4=page1.checkbuttonInsert();
-    var input5=page1.checkbuttonSearch();
+});
+  
+  
+ 
+ 
+  it('should allow to open navigation bar using fab',()=>{
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
     input1.click();
-    input1.sendKeys("Second title test entry for demo");
-    input2.click();
-    input2.sendKeys("Second text test entry for demo");
-    input3.click();
-    input3.sendKeys("Second Subreddit test entry for demo");
-    input4.click();
-    input5.click();
-    browser.sleep(5000);
   });
+  it('should allow to navigate using all button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkallbutton();
+    input2.click();
+  });
+  it('should allow to navigate using random button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkrandombutton();
+    input2.click();
+  });
+  it('should allow to navigate using science button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checksciencebutton();
+    input2.click();
+  });
+  it('should allow to navigate using funny button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkfunnybutton();
+    input2.click();
+  });
+  it('should allow to navigate using math button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkmathbutton();
+    input2.click();
+  });
+  it('should allow to navigate using popular button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkpopularbutton();
+    input2.click();
+  });
+  it('should allow to navigate using user button',()=>{
+    //page.navigateTo();
+    page.navigateTo();
+    var input1=page.checknavigatebutton();
+    input1.click();
+    var input2=page.checkuserbutton();
+    input2.click();
+  });
+  
   it('should post title,text,subreddit on page and populate',()=>{
     page1.navigateTo();
     var input1=page1.posttitleonpage();
@@ -66,6 +110,8 @@ describe('mean-frontend App', () => {
     input5.click();
     browser.sleep(5000);
   });
+
+
   // it('should delete the subreddit', () => {
   //   page1.navigateTo();
   //   var input1=page1.checkbuttonDelete();

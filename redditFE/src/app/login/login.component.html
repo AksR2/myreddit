@@ -1,12 +1,12 @@
-<form (submit)="loginUser($event)"> 
-    <md-form-field class="example-full-width">
-        <input mdInput placeholder="Username" name="signinusername" [(ngModel)]="signinUser.username">
-    </md-form-field>
-    <md-form-field class="example-full-width">
-        <input type ="password" mdInput placeholder="Password" name="signinpassword" [(ngModel)]="signinUser.password">
-    </md-form-field>
+<form (submit)="loginUser($event)" style="float:center"> 
+    <mat-form-field class="example-full-width">
+        <input matInput class="login" placeholder="Username" name="signinusername" [(ngModel)]="signinUser.username">
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width">
+        <input matInput type ="password" class="pwd"  placeholder="Password" name="signinpassword" [(ngModel)]="signinUser.password">
+    </mat-form-field>
     <div class="input">    
-      <button color ="primary" id=signinbtn type ="submit" md-raised-button>Sign In</button>   
+      <button matbutton color ="primary" class="submit" id=signinbtn type ="submit" mat-raised-button>Sign In</button>   
       <!-- <button color ="primary" id=signupbtn routerLink="/regis-form" md-raised-button>Sign Up</button> -->
     </div>
   </form>

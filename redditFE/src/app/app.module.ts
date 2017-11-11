@@ -15,6 +15,7 @@ import {MatToolbarModule} from '@angular/material';
 import { AppRoutingModule }     from './app-routing.module';
 import { UserService } from './services/user.service';
 import { ValidateService} from './services/validate.service';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ValidateService} from './services/validate.service';
     MatInputModule,
     MatSidenavModule,
     MatToolbarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule
   ],
   providers: [
     PostService,
