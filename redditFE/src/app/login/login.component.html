@@ -1,12 +1,19 @@
-<form (submit)="loginUser($event)" style="float:center"> 
-    <mat-form-field class="example-full-width">
+
+  <mat-grid-list  cols = "1" rowHeight="200px">
+        <mat-grid-tile>
+<form (submit)="loginUser($event)" > 
+        <div layout="row"  layout-align="center center">
+    <div><mat-form-field class="example-full-width">
         <input matInput class="login" placeholder="Username" name="signinusername" [(ngModel)]="signinUser.username">
-    </mat-form-field><br>
-    <mat-form-field class="example-full-width">
+    </mat-form-field><br></div>
+    <div> <mat-form-field class="example-full-width">
         <input matInput type ="password" class="pwd"  placeholder="Password" name="signinpassword" [(ngModel)]="signinUser.password">
-    </mat-form-field>
+    </mat-form-field></div>
     <div class="input">    
       <button matbutton color ="primary" class="submit" id=signinbtn type ="submit" mat-raised-button>Sign In</button>   
       <!-- <button color ="primary" id=signupbtn routerLink="/regis-form" md-raised-button>Sign Up</button> -->
     </div>
+</div>
   </form>
+</mat-grid-tile>
+</mat-grid-list> 

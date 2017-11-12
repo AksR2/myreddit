@@ -16,13 +16,17 @@ import { AppRoutingModule }     from './app-routing.module';
 import { UserService } from './services/user.service';
 import { ValidateService} from './services/validate.service';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+//import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     SubredditComponent,
-    LoginComponent
+    LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import {MatCardModule} from '@angular/material/card';
     MatSidenavModule,
     MatToolbarModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
+  //  FlexLayoutModule
   ],
   providers: [
     PostService,
