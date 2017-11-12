@@ -1,21 +1,52 @@
 <div class="row">
-    <div class="col-sm-8">
-        <form>
-        <h3 class="searchBytitle" color="BlueViolet">Search by name:</h3>
-        <mat-form-field><input class="form-control" style="width:100%" color="primary" matInput #title1 type="text" placeholder="name" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field>
-        <button mat-raised-button color="primary" class="searchbutton" (click)="getPosts()">Search</button>
-        <button mat-raised-button color="primary" class="btn btn-default" (click)="clearSearch()">Clear</button>
-    </form>        
-    </div>
+        
+            <mat-grid-list cols="2">
+                    
+                   <mat-grid-tile colspan="1" rowspan="1"> 
+
+                 <!-- <div> -->
+                        
+                     <mat-list>
+                        
+                            <!-- <mat-accordion>
+                                    <mat-expansion-panel>
+                                      <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                          Insert Post
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                          Type the title text and SubReddit
+                                        </mat-panel-description>
+                                      </mat-expansion-panel-header> -->
+                     <h1>Insert Post:</h1><br>
+                    <mat-form-field><input class="titledisp" matInput #titledisp type="text" placeholder="title" [(ngModel)]="this.newPost.title" [ngModelOptions]="{standalone: true}"/></mat-form-field><br>
+                    <mat-form-field><input class="textdisp" matInput #textdisp type="text" placeholder="text" [(ngModel)]="this.newPost.text" [ngModelOptions]="{standalone: true}"/></mat-form-field><br>
+                    <mat-form-field><input class="subredditdisp" matInput #subredditdisp type="text" placeholder="subreddit" [(ngModel)]="this.newPost.subreddit" [ngModelOptions]="{standalone: true}"/></mat-form-field><br>
+                    <button mat-raised-button color="primary" class="checkinsert" (click)="insertPost()"> Insert Post </button>
+                <!-- </div> -->
+            <!-- </mat-expansion-panel>
+        </mat-accordion>
+    </mat-list-item> -->
+            </mat-list>
+        
+            </mat-grid-tile>
+           
+        
+            <mat-grid-tile colspan="1" rowspan="1"> 
+                            <form>
+        
+                <!-- <mat-grid-list cols="3"> -->
+                        
+    <mat-form-field><input class="form-control" color="primary" matInput #title1 type="text" placeholder="Search By Name" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field><br>
+    <button mat-raised-button color="primary" class="searchbutton" (click)="getPosts()">Search</button>
+        <button mat-raised-button color="primary" class="btn btn-default" (click)="clearSearch()">Clear</button><br>
+    </form>
+</mat-grid-tile>         
+</mat-grid-list>
+     
 </div>
 <div class="row">
-    <div>
-        <label for="insertPost" color="primary">Insert Post:</label>
-        <mat-form-field><input class="titledisp" matInput #titledisp type="text" placeholder="title" [(ngModel)]="this.newPost.title" [ngModelOptions]="{standalone: true}"/></mat-form-field>
-        <mat-form-field><input class="textdisp" matInput #textdisp type="text" placeholder="text" [(ngModel)]="this.newPost.text" [ngModelOptions]="{standalone: true}"/></mat-form-field>
-        <mat-form-field><input class="subredditdisp" matInput #subredditdisp type="text" placeholder="subreddit" [(ngModel)]="this.newPost.subreddit" [ngModelOptions]="{standalone: true}"/></mat-form-field>
-        <button mat-raised-button color="primary" class="checkinsert" (click)="insertPost()"> Insert Post </button>
-    </div>
+ 
     <!-- <div class="form-group col-sm-2">
         <label for="editPost">Edit Post:</label>
         <input class="form-control" type="text" placeholder="title" [(ngModel)]="this.editPost.title" [ngModelOptions]="{standalone: true}"/>
@@ -46,8 +77,9 @@
                           {{tile.text}}
                         </mat-grid-tile> -->
                       
+                      <!-- </mat-grid-list> rowHeight="2:1"> -->
                       <mat-grid-list cols="4" rowHeight="2:1">
-        <mat-grid-tile colspan="2" color = "lightblue" class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
+        <mat-grid-tile colspan="1" color = "lightblue" class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
                 <mat-card class="example-card">
                         <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
