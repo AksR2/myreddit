@@ -16,6 +16,10 @@
     margin: 0;
     background-color: aliceblue;
 }
+.example-spacer{
+flex: auto;
+  
+}
 
 /* .example-sidenav {
   /* padding: 20px; */

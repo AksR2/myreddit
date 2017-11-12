@@ -2,7 +2,7 @@
     <div class="col-sm-8">
         <form>
         <h3 class="searchBytitle" color="BlueViolet">Search by name:</h3>
-        <mat-form-field><input class="form-control" color="primary" matInput #title1 type="text" placeholder="name" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field>
+        <mat-form-field><input class="form-control" style="width:100%" color="primary" matInput #title1 type="text" placeholder="name" [(ngModel)]="searchCriteria" [ngModelOptions]="{standalone: true}"/></mat-form-field>
         <button mat-raised-button color="primary" class="searchbutton" (click)="getPosts()">Search</button>
         <button mat-raised-button color="primary" class="btn btn-default" (click)="clearSearch()">Clear</button>
     </form>        
@@ -36,20 +36,36 @@
                     <label for="subreddit">subreddit</label>
                 </div>
         </div> -->
-        <div class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
-            <div class=""><h2><a href="" color="accent">
-                {{post.title}}</a></h2>
-            </div><br>
-            <div class=""><p color="accent">
-                {{post.text}}</p>
-            </div><br>
-            <div class=""><p color="accent">
-                {{post.subreddit}}</p>
-            </div><br>
-            <div >
-                <button  mat-raised-button color="primary" class="checkdelete" (click)="deletePost(post)">Delete</button>
-            </div><br>
-        </div>
+        <!-- <m -->
+                <!-- <mat-grid-list cols="4" rowHeight="100px">
+                        <mat-grid-tile
+                            *ngFor="let tile of tiles"
+                            [colspan]="tile.cols"
+                            [rowspan]="tile.rows"
+                            [style.background]="tile.color">
+                          {{tile.text}}
+                        </mat-grid-tile> -->
+                      
+                      <mat-grid-list cols="4" rowHeight="2:1">
+        <mat-grid-tile colspan="2" color = "lightblue" class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
+                <mat-card class="example-card">
+                        <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{post.title}}</mat-card-title>
+                        <mat-card-subtitle>{{post.text}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                            <p>
+                                    {{post.subreddit}}
+                            </p>
+                          </mat-card-content>
+                          <mat-card-actions>
+                            <button mat-button color="accent"><mat-icon>favorite</mat-icon></button>
+                            <button mat-button color="accent"><mat-icon>favorite</mat-icon></button>
+                            <button mat-button color="accent" class="checkdelete" (click)="deletePost(post)"><mat-icon>delete</mat-icon></button>
+                          </mat-card-actions>
+                        </mat-card>
+       </mat-grid-tile></mat-grid-list>
     <div>
 </div>
 

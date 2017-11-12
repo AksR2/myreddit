@@ -11,16 +11,20 @@
       <button mat-button color="accent" class="users">Users</button><br>
       <!-- <button color="primary">Wiki</button><br> -->
     </mat-sidenav>
-    <div class="example-sidenav-content">
-      <button mat-mini-fab class="example-fab" (click)="sidenav.open()">
-        <mat-icon>nav</mat-icon>
-      </button>
-      </div>
-    <div style="text-align:center">
+    
+    <div>
+      <mat-toolbar color="primary">
+          <div class="example-sidenav-content">
+              <button mat-mini-fab class="example-fab" (click)="sidenav.open()">
+                <mat-icon>nav</mat-icon>
+              </button>
+              </div>
+              <span class="example-spacer"></span>
         <h1>
-          Welcome to {{title}}!
+          {{title}}!
         </h1>
-        <img width="300" src="https://store-images.microsoft.com/image/apps.41241.9007199266531616.d6aea9fa-72ae-43a6-8a56-acf6eabee527.50e41d98-a684-4998-a67e-00afa98b0344?w=180&h=180&q=60">
+      </mat-toolbar>
+        <img width="200" src="https://drawingartpop.com/wp-content/uploads/2017/04/cute-bunny-drawings-how-to-draw-a-cute-bunny-youtube.jpg">
       </div>
       <div>
         <!-- <posts></posts> -->

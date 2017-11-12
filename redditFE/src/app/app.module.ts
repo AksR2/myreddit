@@ -17,6 +17,8 @@ import { UserService } from './services/user.service';
 import { ValidateService} from './services/validate.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+
 
 //import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -40,7 +42,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatToolbarModule,
     AppRoutingModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   //  FlexLayoutModule
   ],
   providers: [
