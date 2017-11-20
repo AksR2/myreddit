@@ -51,7 +51,7 @@ router.post('/insertPost', function(req, res, next) {
       res.status(400);
       res.send();
     }
-    res.send({ id : newPost._id ,title:newPost.title,text:newPost.text,subreddit:newPost.subreddit});
+    res.send({ id : newPost._id ,title:newPost.title,text:newPost.text,subreddit:newPost.subreddit,imageurl:newPost.imageurl});
   });
 });
 // _id : req.body.id,
