@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { User } from './user';
+ import { User } from '../model/user';
 import { Observable } from 'rxjs/Rx';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 export class UserService {
   private isUserLoggedIn;
   private username;
-  constructor(private _http: Http) {
+  constructor(private http: Http) {
     this.isUserLoggedIn = false;
   }
   setUserLoggedIn() {
@@ -23,17 +23,17 @@ export class UserService {
   getUserLoggedIn() {
     return this.isUserLoggedIn;
   }
-//   create(user: User) {
-//     return this._http.post('/users/register', user).map(data => {
-//       const returnUser = data.json();
-//       // console.log(returnUser);
-//       if (returnUser && returnUser.token) {
-//         // store user details and jwt token in local storage to keep user logged in between page refreshes
-//         localStorage.setItem('currentUser', JSON.stringify(returnUser));
-//       }
-//       return returnUser.success;
-//     }).toPromise();
-//   }
+  create(user: User) {
+    return this.http.post('http://localhost:3000/register', user).map(data => {
+      const returnUser = data.json();
+      // console.log(returnUser);
+      if (returnUser && returnUser.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(returnUser));
+      }
+      return returnUser.success;
+    }).toPromise();
+  }
 //   destroy(user: User) {
 //     return this._http.delete('/users/' + user._id).map(data => data.json()).toPromise();
 //   }
@@ -60,13 +60,13 @@ export class UserService {
 //     return this._http.get('/users').map(data => data.json()).toPromise();
 //   }
   loginUser(username: String, password: String) {
-    return this._http.post('/users/authenticate', { username: username, password: password })
+    return this.http.post('http://localhost:3000/authenticate', { username: username, password: password })
       // .map(data => data.json()).toPromise();
       .map(data => {
         // login successful if there's a jwt token in the response
         const user = data.json();
-        // console.log(user);
-        if (user && user.token) {
+        console.log(user);
+        if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
