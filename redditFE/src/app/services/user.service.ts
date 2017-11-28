@@ -69,8 +69,10 @@ export class UserService {
         if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('userName', user.user.username);
         }
         console.log("current user: ", localStorage.getItem('currentUser'))
+        console.log("username",localStorage.getItem('userName'))
         return user.success;
       }).toPromise();
   }

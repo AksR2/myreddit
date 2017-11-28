@@ -3,6 +3,7 @@ import { Http, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Post } from '../model/post';
+import { Comment } from '../model/comment';
 import { SubredditPost } from '../model/subreddit'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -69,5 +70,63 @@ export class PostService {
         .catch((error:any) => {
             return Observable.throw(error.json ? error.json().error : error || 'Server error')
         });
+    }
+
+    upVote(post:Post): Observable<any>{
+        return this.http.post("http://localhost:3000/upVote", post)
+            .map((res:any) => {
+                return res.json();
+            })
+            .catch((error:any) => {
+                return Observable.throw(error.json ? error.json().error : error || 'Server error')
+            }); 
+    }
+
+    downVote(post:Post): Observable<any>{
+        return this.http.post("http://localhost:3000/downVote", post)
+            .map((res:any) => {
+                return res.json();
+            })
+            .catch((error:any) => {
+                return Observable.throw(error.json ? error.json().error : error || 'Server error')
+            }); 
+    }
+
+    getCommentsForPost(searchCriteria:any) : Observable<Comment[]>{
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('postid', searchCriteria);
+
+        return this.http.get("http://localhost:3000/getComments", { search: params })
+                .map((res:any) => {
+                    console.log(res.json);
+                    return res.json();
+                })
+                .catch((error:any) => {
+                    console.log(error);
+                    return Observable.throw(error.json ? error.json().error : error || 'Server error')
+                }); 
+    }
+
+    insertNewComment(comment:Comment): Observable<any>{
+        return this.http.post("http://localhost:3000/insertComment", comment)
+            .map((res:any) => {
+                return res.json();
+            })
+            .catch((error:any) => {
+                return Observable.throw(error.json ? error.json().error : error || 'Server error')
+            }); 
+    }
+
+    getPostByID(searchCriteria:any) : Observable<Post[]>{
+        let params: URLSearchParams = new URLSearchParams();
+        params.set('_id', searchCriteria);
+
+        return this.http.get("http://localhost:3000/getPostByID", { search: params })
+                .map((res:any) => {
+                    return res.json();
+                })
+                .catch((error:any) => {
+                    return Observable.throw(error.json ? error.json().error : error || 'Server error')
+                }); 
     }
 }

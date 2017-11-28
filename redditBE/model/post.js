@@ -6,7 +6,9 @@ var postSchema = new Schema({
   title: String,
   text: String,
   subreddit: String,
-  imageurl: String
+  imageurl: String,
+  votes: Number,
+  // comments: String
   //location: String
 });
 

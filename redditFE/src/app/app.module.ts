@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import {MatSidenavModule} from '@angular/material';
 import { PostComponent } from './posts/posts.component';
 import { SubredditComponent } from './subreddit/subreddit.component';
+import { CommentsComponent } from './comments/comments.component';
 import { PostService } from './services/posts.service';
 import { LoginComponent} from './login/login.component';
 import { RegisteruserComponent } from './registeruser/registeruser.component';
@@ -32,6 +33,7 @@ import {MatListModule} from '@angular/material/list';
     SubredditComponent,
     LoginComponent,
     RegisteruserComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

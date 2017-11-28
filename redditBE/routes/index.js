@@ -1,7 +1,10 @@
+//import { ok } from 'assert';
+
 var express = require('express');
 var Post = require('../model/post');
 var subreddit = require('../model/subreddit');
 var User = require('../model/user');
+var Comment = require('../model/comment');
 var mongoose = require('mongoose');
 
 var router = express.Router();
@@ -12,14 +15,14 @@ router.get('/getPosts', function(req, res, next) {
   if(req.query.title)
     searchQuery = { title: req.query.title };
 
-  console.log(Post);
+  //console.log(Post);
   Post.find(searchQuery, function(err, posts){
     if (err) {
       res.status(400);      
       res.send();
     }
 
-    console.log(posts);
+    //console.log(posts);
     console.log("returning all the posts.");
     res.send(posts);
   })
@@ -52,7 +55,7 @@ router.post('/insertPost', function(req, res, next) {
       res.status(400);
       res.send();
     }
-    res.send({ id : newPost._id ,title:newPost.title,text:newPost.text,subreddit:newPost.subreddit,imageurl:newPost.imageurl});
+    res.send({ id : newPost._id ,title:newPost.title,text:newPost.text,subreddit:newPost.subreddit,imageurl:newPost.imageurl, votes:newPost.votes, comments:newPost.comments});
   });
 });
 // _id : req.body.id,
@@ -68,9 +71,14 @@ router.post('/deletePost', function(req, res, next) {
     res.send({status: 'ok'});
   });
 });
-
+/** dfsdfsdfsdf
+ * @param  {} '/updatePost'
+ * @param  {} function(req
+ * @param  {} res
+ * @param  {} next
+ */
 router.post('/updatePost', function(req, res, next) {
-  var post = new Post(req.body);
+    var post = new Post(req.body);
 
   Post.update({_id : post.id}, post, function(err) {
     if (err) {
@@ -174,6 +182,105 @@ router.post('/register', (req, res, next) => {
           }
       }
   }
+
 });
+
+router.post('/upVote', function(req, res, next) {
+  var post = new Post(req.body);
+  console.log(req.body);
+  post.votes++;
+  Post.update({_id : req.body._id}, post, function(err) {
+    if (err) {
+      console.log("not updated!");
+      res.status(400);      
+      res.send();
+    }
+    console.log("vote increased");
+    res.send({status: 'ok'});
+  });
+});
+
+router.post('/downVote', function(req, res, next) {
+  var post = new Post(req.body);
+  post.votes--;
+  Post.update({_id : req.body._id}, post, function(err) {
+    if (err) {
+      console.log("not updated!");
+      res.status(400);      
+      res.send();
+    }
+
+    console.log("vote decreased");
+    res.send({status: 'ok'});
+  });
+});
+
+// router.post('/comments', function(req, res, next) {
+//   var post = new Post(req.body);
+// post.comments = 
+// Post.update({_id : req.body._id}, post, function(err) {
+//   if (err) {
+//     console.log("not updated!");
+//     res.status(400);      
+//     res.send();
+//   }
+
+//   console.log("updated!");
+//   res.send({status: 'ok'});
+// });
+// });
+
+router.get('/getComments', function(req, res, next) {
+  
+    var searchQuery = {};
+  
+  
+    if(req.query.postid)
+      searchQuery = { postid: req.query.postid };
+    Comment.find(searchQuery, function(err, comments){
+      if (err) {
+        res.status(400);      
+        res.send();
+      }
+      console.log("returning all the comments for the specific posts");
+      res.send(comments);
+    })
+  });
+
+
+router.post('/insertComment', function(req, res, next) {
+    var newComment = new Comment(req.body);
+    newComment._id = mongoose.Types.ObjectId();
+  
+    newComment.save(function(err) {
+      if (err) {
+        res.status(400);
+        res.send();
+      }
+
+      res.send({ _id : newComment._id ,postid:newComment.postid,
+        user_name:newComment.user_name,comment:newComment.comment});
+    });
+});
+
+
+router.get('/getPostByID', function(req, res, next) {
+    var searchQuery = {};
+  console.log(req.query);
+    if(req.query._id)
+      searchQuery = { _id: mongoose.Types.ObjectId(req.query._id) };
+  
+    //console.log(Post);
+    Post.find(searchQuery, function(err, posts){
+      if (err) {
+        res.status(400);      
+        res.send();
+      }
+  
+      console.log(posts);
+      console.log("returning all the posts.");
+      res.send(posts);
+    })
+  });
 
 module.exports = router;

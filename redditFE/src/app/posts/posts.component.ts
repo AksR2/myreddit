@@ -34,7 +34,7 @@ export class PostComponent implements OnInit {
         console.log("Post deleted!");
       })
   }
-  
+
   insertPost() {
     this.postService
     .insertNewPost(this.newPost)
@@ -78,11 +78,46 @@ export class PostComponent implements OnInit {
                                 element.title, 
                                 element.text,
                                 element.subreddit,
-                              element.imageurl);
+                              element.imageurl,
+                            element.votes,
+                          element.comments);
              this.posts.push(newPost);
            })
       })
   }
+
+  
+  upVote(post:Post){
+    console.log(post)
+    this.postService.upVote(post)
+    .subscribe(
+      data => {
+         this.getPosts();
+         console.log("feVote increased");
+      }
+    )
+  }
+
+  downVote(post:Post){
+    this.postService.downVote(post)
+    .subscribe(
+      data => {
+         this.getPosts();
+         console.log("feVote decreased");
+      }
+    )
+  }
+
+  // comments(post:Post){
+  //   console.log(post)
+  //   this.postService.comments(post)
+  //   .subscribe(
+  //     data => {
+  //        this.getPosts();
+  //        console.log("feVote increased");
+  //     }
+  //   )
+  // }
 
    clearSearch(){
      this.searchCriteria = '';
@@ -90,6 +125,6 @@ export class PostComponent implements OnInit {
    }
 
   setEditPost(post: Post){
-    this.editPost = new Post(post._id, post.title, post.text, post.subreddit,post.imageurl);
+    this.editPost = new Post(post._id, post.title, post.text, post.subreddit,post.imageurl,post.votes,post.comments);
   }
 }
