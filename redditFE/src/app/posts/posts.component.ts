@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
     this.getPosts();
   }
 
+
   deletePost(post:Post)
   {
     this.postService.deletePost(post)
@@ -90,4 +91,8 @@ export class PostComponent implements OnInit {
   setEditPost(post: Post){
     this.editPost = new Post(post._id, post.title, post.text, post.subreddit);
   }
+  
+  
+
+
 }

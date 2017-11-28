@@ -44,10 +44,10 @@
         <mat-card-content> {{post.text}} </mat-card-content>
         <mat-card-content> {{post.total_votes}} </mat-card-content>
         <mat-card-actions>  
-                <button mat-button color="primary" class="checkdelete" >Upvote</button>
-                <button mat-button color="primary" class="checkdelete" >Downvote</button>
+                <button mat-button color="primary" class="checkupvote" (click)="upvote(post)" >Upvote</button>
+                <button mat-button color="primary" class="checkdownvote" (click)="downvote()" >Downvote</button>
                 <button mat-button color="primary" class="checkdelete" (click)="deletePost(post)">Delete</button>
-                <button mat-button color="primary" class="checkdelete" >Comment</button>
+                <button mat-button color="primary" class="checkcomment">Comment</button>
          </mat-card-actions>
         
 </mat-card>
