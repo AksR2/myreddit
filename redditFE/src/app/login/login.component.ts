@@ -26,22 +26,23 @@ export class LoginComponent implements OnInit {
 
     if (!this.validateService.validateLogin(this.signinUser)) {
     //   this.flashMessage.show('Please fill in all fields', {cssClass: 'alert', timeout: 3000});
-      return false;
+    console.log('Fill all fields');  
+    return false;
     }
 
-    this.router.navigate(['posts']);
-
-    // this.user.loginUser(username, password)
-    // .then(status => {
-    //   // console.log(status);
-    //   if (status) {
-    //     this.router.navigate(['posts']);
-    //     this.user.setUserLoggedIn();
-    //   } else {
-    //     // this.flashMessage.show('Wrong username or password', {cssClass: 'alert', timeout: 3000});
-    //     // this.router.navigate(['']);
-    //   }
-    // }).catch(err => console.log(err));
+    //  this.router.navigate(['posts']);
+    console.log('The credentials:',username,password);
+    this.user.loginUser(username, password)
+    .then(status => {
+       console.log(status);
+      if (status) {
+        this.router.navigate(['posts']);
+        this.user.setUserLoggedIn();
+      } else {
+        // this.flashMessage.show('Wrong username or password', {cssClass: 'alert', timeout: 3000});
+        // this.router.navigate(['']);
+      }
+    }).catch(err => console.log(err));
   }
   getUser() {
   }
