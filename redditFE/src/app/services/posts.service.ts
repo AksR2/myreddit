@@ -7,14 +7,29 @@ import { Comment } from '../model/comment';
 import { SubredditPost } from '../model/subreddit'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
+/**
+ * 
+ * g
+ * @export
+ * @class PostService
+ */
 @Injectable()
 export class PostService {
-    
+    /**
+     * Creates an instance of PostService.
+     * @param {Http} http 
+     * @memberof PostService
+     */
     constructor(private http: Http) { 
     }
-
-    getPosts(searchCriteria:any) : Observable<Post[]>{
+/**
+ * 
+ * get the post based on a search criteria
+ * @param {*} searchCriteria 
+ * @returns {Observable<Post[]>} 
+ * @memberof PostService
+ */
+getPosts(searchCriteria:any) : Observable<Post[]>{
         let params: URLSearchParams = new URLSearchParams();
         params.set('title', searchCriteria);
 
@@ -26,8 +41,14 @@ export class PostService {
                     return Observable.throw(error.json ? error.json().error : error || 'Server error')
                 }); 
     }
-
-    getPostssub(searchCriteria:any) : Observable<SubredditPost[]>{
+/**
+ * get subreddit posts based on categories
+ * 
+ * @param {*} searchCriteria 
+ * @returns {Observable<SubredditPost[]>} 
+ * @memberof PostService
+ */
+getPostssub(searchCriteria:any) : Observable<SubredditPost[]>{
         let params: URLSearchParams = new URLSearchParams();
         params.set('subreddit_cat', searchCriteria);
 
@@ -41,8 +62,14 @@ export class PostService {
                     return Observable.throw(error.json ? error.json().error : error || 'Server error')
                 }); 
     }
-
-    insertNewPost(post:Post): Observable<any>{
+/**
+ * inserting new posts based on user inputs
+ * 
+ * @param {Post} post 
+ * @returns {Observable<any>} 
+ * @memberof PostService
+ */
+insertNewPost(post:Post): Observable<any>{
         return this.http.post("http://localhost:3000/insertPost", post)
             .map((res:any) => {
                 return res.json();
@@ -51,8 +78,14 @@ export class PostService {
                 return Observable.throw(error.json ? error.json().error : error || 'Server error')
             }); 
     }
-
-    updatePost(post:Post): Observable<any>{
+/**
+ * update the posts as per users
+ * 
+ * @param {Post} post 
+ * @returns {Observable<any>} 
+ * @memberof PostService
+ */
+updatePost(post:Post): Observable<any>{
         return this.http.post("http://localhost:3000/updatePost", post)
             .map((res:any) => {
                 return res.json();
@@ -61,8 +94,14 @@ export class PostService {
                 return Observable.throw(error.json ? error.json().error : error || 'Server error')
             }); 
     }
-
-    deletePost(post:Post): Observable<any>{
+/**
+ * delete any particular post based on postId
+ * 
+ * @param {Post} post 
+ * @returns {Observable<any>} 
+ * @memberof PostService
+ */
+deletePost(post:Post): Observable<any>{
         return this.http.post("http://localhost:3000/deletePost", { id: post._id })
         .map((res:any) => {
             return res.json();

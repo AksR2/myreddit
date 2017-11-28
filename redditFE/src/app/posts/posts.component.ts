@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { Post } from '../model/post';
 import { PostService} from '../services/posts.service';
-
+/**
+ * 
+ * 
+ * @export
+ * @class PostComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -17,15 +23,24 @@ export class PostComponent implements OnInit {
   constructor(
     private postService: PostService
   ) { }
-
-  ngOnInit() {
+/**
+ * 
+ * 
+ * @memberof PostComponent
+ */
+ngOnInit() {
     this.newPost = Post.CreateDefault();
     this.editPost = Post.CreateDefault();
     this.searchCriteria = '';
     this.getPosts();
   }
-
-  deletePost(post:Post)
+/**
+ * @param {Post} post 
+ * @memberof PostComponent
+ * calls the delete post service
+ * removes a post from the page
+ */
+deletePost(post:Post)
   {
     this.postService.deletePost(post)
     .subscribe(
@@ -35,6 +50,11 @@ export class PostComponent implements OnInit {
       })
   }
 
+  /**
+   * inserts a post onto the page
+   * calls the insertNewPost Service
+   * @memberof PostComponent
+   */
   insertPost() {
     this.postService
     .insertNewPost(this.newPost)
@@ -48,11 +68,22 @@ export class PostComponent implements OnInit {
       }
     )
   }
+  /**
+   * 
+   * 
+   * @param {any} $scope 
+   * @memberof PostComponent
+   */
   AppCtrl($scope) {
       $scope.currentNavItem = 'page1';
     }
-
-   updatPost(post:Post) {
+/**
+ * Calls the update Post service
+ * 
+ * @param {Post} post 
+ * @memberof PostComponent
+ */
+updatPost(post:Post) {
     this.postService
     .updatePost(this.newPost)
     .subscribe(
@@ -66,8 +97,12 @@ export class PostComponent implements OnInit {
     )
   }
   
-
-  getPosts(){
+/**
+ * gets a post based on a particular search criteria
+ * 
+ * @memberof PostComponent
+ */
+getPosts(){
     this.postService.getPosts(this.searchCriteria)
     .subscribe(
       data => {
@@ -118,8 +153,13 @@ export class PostComponent implements OnInit {
   //     }
   //   )
   // }
-
-   clearSearch(){
+  
+/**
+ * 
+ * empties the search criteria
+ * @memberof PostComponent
+ */
+clearSearch(){
      this.searchCriteria = '';
      this.getPosts();
    }

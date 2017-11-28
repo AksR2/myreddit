@@ -45,9 +45,10 @@ server.on('listening', onListening);
 module.exports=server;
 
 /**
+ * 
  * Normalize a port into a number, string, or false.
+ *
  */
-
 function normalizePort(val) {
   var port = parseInt(val, 10);
 

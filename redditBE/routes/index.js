@@ -25,6 +25,7 @@ router.get('/getPosts', function(req, res, next) {
     //console.log(posts);
     console.log("returning all the posts.");
     res.send(posts);
+    
   })
 });
 
@@ -49,6 +50,18 @@ router.get('/getPostssub', function(req, res, next) {
 router.post('/insertPost', function(req, res, next) {
   var newPost = new Post(req.body);
   newPost._id = mongoose.Types.ObjectId();
+    if(!req.body.title){
+        res.status(400);
+        res.send({status:'notok'});
+    }
+    if(!req.body.text){
+        res.status(400);
+        res.send({status:'notok'});
+    }
+    if(!req.body.subreddit){
+        res.status(400);
+        res.send({status:'notok'});
+    }
 
   newPost.save(function(err) {
     if (err) {
@@ -77,20 +90,21 @@ router.post('/deletePost', function(req, res, next) {
  * @param  {} res
  * @param  {} next
  */
-router.post('/updatePost', function(req, res, next) {
-    var post = new Post(req.body);
 
-  Post.update({_id : post.id}, post, function(err) {
-    if (err) {
-      console.log("not updated!");
-      res.status(400);      
-      res.send();
-    }
+// router.post('/updatePost', function(req, res, next) {
+//   var post = new Post(req.body);
 
-    console.log("updated!");
-    res.send({status: 'ok'});
-  });
-});
+//   Post.update({_id : post.id}, post, function(err) {
+//     if (err) {
+//       console.log("not updated!");
+//       res.status(400);      
+//       res.send();
+//     }
+
+//     console.log("updated!");
+//     res.send({status: 'ok'});
+//   });
+// });
 
 router.post('/authenticate', (req, res) => {
   if (!req.body.username) {
@@ -112,10 +126,7 @@ router.post('/authenticate', (req, res) => {
                       if (!validPassword) {
                           res.json({success: false, message: 'Invalid password.'});
                       } else {
-                          // const token = jwt.sign({ sub: user._id }, config.secret, {
-                          //     expiresIn:86400//1 day
-                          // });
-                         //console.log(token);
+                        
                          res.json({
                              success:true,
                             //  token:'JWT '+token,
@@ -127,14 +138,6 @@ router.post('/authenticate', (req, res) => {
                              },
                              message: 'Success!'
                          });
-                          // const token = jwt.sign({userId: user._id}, config.secret, {expiresIn: '24h'});
-                          // res.json({success: true, 
-                          //           message: 'Success!',
-                          //           token: token,
-                          //           user: {
-                          //                 username: user.username
-                          //           }
-                          // });
                       }
                   }
               }

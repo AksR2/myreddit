@@ -6,7 +6,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 
-
+/**
+ * 
+ * 
+ * @export
+ * @class UserService
+ */
 @Injectable()
 export class UserService {
   private isUserLoggedIn;
@@ -14,15 +19,40 @@ export class UserService {
   constructor(private http: Http) {
     this.isUserLoggedIn = false;
   }
+  /**
+   * make the current user as logged in
+   * 
+   * @memberof UserService
+   */
   setUserLoggedIn() {
     this.isUserLoggedIn = true;
   }
-  setUserLoggedOut() {
+  /**
+   * 
+   * to check whether the user is logged in
+   * @memberof UserService
+   */
+  
+   setUserLoggedOut() {
     this.isUserLoggedIn = false;
   }
+  
+  /**
+   * 
+   * function to get the current logged in user
+   * @returns 
+   * @memberof UserService
+   */
   getUserLoggedIn() {
     return this.isUserLoggedIn;
   }
+  /**
+   * 
+   * creates a User by registering
+   * @param {User} user 
+   * @returns 
+   * @memberof UserService
+   */
   create(user: User) {
     return this.http.post('http://localhost:3000/register', user).map(data => {
       const returnUser = data.json();

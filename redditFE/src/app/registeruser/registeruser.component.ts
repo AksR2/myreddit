@@ -3,7 +3,13 @@ import { UserService } from '../services/user.service';
 import { User } from '../model/user';
 import { Router } from '@angular/router';
 import {ValidateService} from '../services/validate.service';
-
+/**
+ * 
+ * 
+ * @export
+ * @class RegisteruserComponent
+ * @implements {OnInit}
+ */
 @Component({
     selector: 'app-regis-form',
     templateUrl: './registeruser.component.html',
@@ -12,17 +18,25 @@ import {ValidateService} from '../services/validate.service';
     newUser = new User();
     confirmedpassword: String;
   
-    // tslint:disable-next-line:max-line-length
+    /**
+     * Creates an instance of RegisteruserComponent.
+     * @param {Router} router 
+     * @param {UserService} userService 
+     * @memberof RegisteruserComponent
+     */
     constructor(private router: Router, private userService: UserService) { }
-  
-    ngOnInit() {
+
+  ngOnInit() {
     }
-  
-    signupUser() {
+/**
+ * 
+ * SignUp the User based on the criteria
+ * @memberof RegisteruserComponent
+ */
+signupUser() {
         console.log('new user has been created, info: ', this.newUser);  // all validation passed, can register new user
         this.userService.create(this.newUser)         
             .then(status => {
-            //localStorage.setItem('currentUser', JSON.stringify(this.newUser));
             this.userService.setUserLoggedIn();
             this.router.navigate(['login']);
             })

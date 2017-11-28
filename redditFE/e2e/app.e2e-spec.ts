@@ -22,9 +22,9 @@ describe('mean-frontend App', () => {
     var input2=page.checkpwdform();
     var input3=page.checksubmitbutton();
     input1.click();
-    input1.sendKeys("Akshay");
+    input1.sendKeys("Himanshu");
     input2.click();
-    input2.sendKeys("password");
+    input2.sendKeys("abc");
     input3.click();
 });
   
@@ -110,6 +110,15 @@ describe('mean-frontend App', () => {
     input5.click();
     browser.sleep(5000);
   });
+  // it('should click on the comment button',()=>{
+  //   page1.navigateTo();
+  //   var input1=page1.
+
+  // })
+  // it('should login the user, insert the post, check every subreddit page and insert comments',()=>{
+  //   page.navigateTo();
+
+  // })
 
 
   // it('should delete the subreddit', () => {

@@ -5,7 +5,13 @@ import { Location } from '@angular/common';
 import { SubredditPost } from '../model/subreddit';
 import { PostService} from '../services/posts.service';
 
-
+/**
+ * create subreddits based on filters from posts
+ * 
+ * @export
+ * @class SubredditComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'subredditposts',
   templateUrl: './subreddit.component.html',
@@ -18,25 +24,43 @@ export class SubredditComponent implements OnInit {
   newPost: SubredditPost;
   editPost: SubredditPost;
   @Input() searchCriteria: string;
-
-  constructor(
+/**
+ * Creates an instance of SubredditComponent.
+ * @param {ActivatedRoute} route 
+ * @param {PostService} postService 
+ * @memberof SubredditComponent
+ */
+constructor(
     private route: ActivatedRoute,
     private postService: PostService,
     //private location: Location
   ) {}
-
-   ngOnInit(): void {
+/**
+ * 
+ * 
+ * @memberof SubredditComponent
+ */
+ngOnInit(): void {
     this.route.params
     .subscribe(params => this.handleRouteChange(params));
    }
 
-
-   handleRouteChange(params){
+/**
+ * handles the navigation from subreddit page
+ * 
+ * @param {any} params 
+ * @memberof SubredditComponent
+ */
+handleRouteChange(params){
     this.searchCriteria= params['name'];
     this.getPostssub();
    }
-
-   getPostssub(){
+/**
+ * get subreddit posts based on search criteria
+ * get subreddit posts
+ * @memberof SubredditComponent
+ */
+getPostssub(){
     this.postService.getPostssub(this.searchCriteria)
     .subscribe(
       data => {
@@ -54,8 +78,13 @@ export class SubredditComponent implements OnInit {
            })
       })
    }
-
-   setEditPost(post: SubredditPost){
+/**
+ * 
+ * 
+ * @param {SubredditPost} post 
+ * @memberof SubredditComponent
+ */
+setEditPost(post: SubredditPost){
     this.editPost = new SubredditPost(post._id, post.user_name, post.title, post.text, post.total_votes, post.subreddit_cat);
   }
   // goBack(): void {
