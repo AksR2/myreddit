@@ -45,12 +45,12 @@ getPosts(searchCriteria:any) : Observable<Post[]>{
  * get subreddit posts based on categories
  * 
  * @param {*} searchCriteria 
- * @returns {Observable<SubredditPost[]>} 
+ * @returns {Observable<Post[]>} 
  * @memberof PostService
  */
-getPostssub(searchCriteria:any) : Observable<SubredditPost[]>{
+getPostssub(searchCriteria:any) : Observable<Post[]>{
         let params: URLSearchParams = new URLSearchParams();
-        params.set('subreddit_cat', searchCriteria);
+        params.set('subreddit', searchCriteria);
 
         return this.http.get("http://localhost:3000/getPostssub", { search: params })
                 .map((res:any) => {

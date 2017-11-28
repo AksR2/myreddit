@@ -34,9 +34,9 @@ router.get('/getPostssub', function(req, res, next) {
   var searchQuery = {};
 
 
-  if(req.query.subreddit_cat)
-    searchQuery = { subreddit_cat: req.query.subreddit_cat };
-  subreddit.find(searchQuery, function(err, posts){
+  if(req.query.subreddit)
+    searchQuery = { subreddit: req.query.subreddit };
+  Post.find(searchQuery, function(err, posts){
     if (err) {
       console.log("Issue is here.....");
       res.status(400);      

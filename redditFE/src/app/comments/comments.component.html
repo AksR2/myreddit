@@ -1,26 +1,41 @@
 <button color ="primary" id=signupcancelbtn (click)="backClicked()" color="accent" mat-raised-button>Back</button>
-<mat-card *ngFor="let post of posts">
+<!-- <mat-card *ngFor="let post of posts">
     <mat-card-header>
-    <!-- <div mat-card-avatar>{{post.user_name}}</div> -->
     <mat-card-title color="accent"><h3>{{post.title}}</h3></mat-card-title>
     <mat-card-subtitle> by {{post.user_name}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content> {{post.text}} </mat-card-content>
     <mat-card-content> {{post.total_votes}} </mat-card-content>
-    <!-- <mat-card-actions>  
-            <button mat-button color="primary" class="checkdelete" >Upvote</button>
-            <button mat-button color="primary" class="checkdelete" >Downvote</button>
-            <button mat-button color="primary" class="checkdelete" (click)="deletePost(post)">Delete</button>
-            <button mat-button color="primary" class="checkdelete" routerLink="/comments/{{post._id}}" >Comment</button>
-     </mat-card-actions> -->
     
-</mat-card> <br>
+</mat-card> <br> -->
+
+<mat-grid-list cols="3">
+    <mat-grid-tile colspan="1" color = "lightblue" class="row" *ngFor="let post of posts" (click)="setEditPost(post)">
+            <mat-card class="example-card" style="width:400px">
+                    <mat-card-header>
+                    <div mat-card-avatar></div>
+                    <mat-card-title style="word-wrap: break-word">{{post.title}}</mat-card-title>
+                    <mat-card-subtitle>{{post.text}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{post.votes}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image height="300px" [src]="post.imageurl" alt="Photo of a Chapati">
+                <mat-card-content>
+                        <p>
+                                {{post.subreddit}} 
+                        </p>
+                        <!-- <p>{{post.comments}}</p> -->
+                      </mat-card-content>
+                    </mat-card>
+   </mat-grid-tile></mat-grid-list>
+
+
+
+
 <h1>Comments Section:</h1><br>
 <mat-card *ngFor="let comment of comments">
    <div *ngIf="comment">
     <mat-card-header>
-    <!-- <div mat-card-avatar>{{post.user_name}}</div> -->
     <mat-card-title color="accent"><h3>{{comment.post_id}}</h3></mat-card-title>
     <mat-card-subtitle> by {{comment.user_name}}</mat-card-subtitle>
     </mat-card-header>
@@ -29,8 +44,8 @@
 </mat-card>
 
 <mat-card>
-<h1>Insert Comment:</h1><br>
+<h3>Insert Comment:</h3><br>
 <mat-form-field><input class="textdisp" matInput #textdisp type="text" placeholder="text" [(ngModel)]="this.newComment.comment" [ngModelOptions]="{standalone: true}"/></mat-form-field><br>
 <button mat-raised-button color="primary" class="checkinsert" (click)="insertNewComment()"> Insert Comment </button>
-</mat-card>
+</mat-card><br>
 

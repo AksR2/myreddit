@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
+import { Post } from '../model/post';
 import { SubredditPost } from '../model/subreddit';
 import { PostService} from '../services/posts.service';
 
@@ -20,9 +20,9 @@ import { PostService} from '../services/posts.service';
 })
 export class SubredditComponent implements OnInit {
 
-  posts: SubredditPost[];
-  newPost: SubredditPost;
-  editPost: SubredditPost;
+  posts: Post[];
+  newPost: Post;
+  editPost: Post;
   @Input() searchCriteria: string;
 /**
  * Creates an instance of SubredditComponent.
@@ -68,24 +68,48 @@ getPostssub(){
          this.posts = [];
          data.forEach(
            element => {
-             var newPost = new SubredditPost(element._id, 
-                            element.user_name,
-                                element.title, 
-                                element.text,
-                                element.total_votes,
-                                element.subreddit_cat);
+             var newPost = new Post(element._id, 
+                                  element.title, 
+                                  element.text,
+                                  element.subreddit,
+                                  element.imageurl,
+                                  element.votes,
+                                  element.comments);
              this.posts.push(newPost);
            })
       })
    }
+
+   upVote(post:Post){
+    console.log(post)
+    this.postService.upVote(post)
+    .subscribe(
+      data => {
+         this.getPostssub();
+         console.log("feVote increased");
+      }
+    )
+  }
+
+  downVote(post:Post){
+    this.postService.downVote(post)
+    .subscribe(
+      data => {
+         this.getPostssub();
+         console.log("feVote decreased");
+      }
+    )
+  }
+
+
 /**
  * 
  * 
- * @param {SubredditPost} post 
+ * @param {Post} post 
  * @memberof SubredditComponent
  */
-setEditPost(post: SubredditPost){
-    this.editPost = new SubredditPost(post._id, post.user_name, post.title, post.text, post.total_votes, post.subreddit_cat);
+setEditPost(post: Post){
+    // this.editPost = new SubredditPost(post._id, post.user_name, post.title, post.text, post.total_votes, post.subreddit_cat);
   }
   // goBack(): void {
   //   this.location.back();
