@@ -38,11 +38,11 @@ router.get('/getPostssub', function(req, res, next) {
     searchQuery = { subreddit: req.query.subreddit };
   Post.find(searchQuery, function(err, posts){
     if (err) {
-      console.log("Issue is here.....");
+     //console.log("Issue is here.....");
       res.status(400);      
       res.send();
     }
-    console.log("returning all the posts in that subreddit.");
+    //console.log("returning all the posts in that subreddit.");
     res.send(posts);
   })
 });
@@ -75,12 +75,12 @@ router.post('/insertPost', function(req, res, next) {
 router.post('/deletePost', function(req, res, next) {
   Post.remove({_id : req.body.id}, function(err) {
     if (err) {
-      console.log("not removed!");
+      //console.log("not removed!");
       res.status(400);      
       res.send({status:'notok'});
     }
 
-    console.log("removed!");
+    //console.log("removed!");
     res.send({status: 'ok'});
   });
 });
@@ -190,7 +190,7 @@ router.post('/register', (req, res, next) => {
 
 router.post('/upVote', function(req, res, next) {
   var post = new Post(req.body);
-  console.log(req.body);
+ // console.log(req.body);
   post.votes++;
   Post.update({_id : req.body._id}, post, function(err) {
     if (err) {
@@ -198,7 +198,7 @@ router.post('/upVote', function(req, res, next) {
       res.status(400);      
       res.send();
     }
-    console.log("vote increased");
+   // console.log("vote increased");
     res.send({status: 'ok'});
   });
 });
@@ -208,30 +208,16 @@ router.post('/downVote', function(req, res, next) {
   post.votes--;
   Post.update({_id : req.body._id}, post, function(err) {
     if (err) {
-      console.log("not updated!");
+      //console.log("not updated!");
       res.status(400);      
       res.send();
     }
 
-    console.log("vote decreased");
+    //console.log("vote decreased");
     res.send({status: 'ok'});
   });
 });
 
-// router.post('/comments', function(req, res, next) {
-//   var post = new Post(req.body);
-// post.comments = 
-// Post.update({_id : req.body._id}, post, function(err) {
-//   if (err) {
-//     console.log("not updated!");
-//     res.status(400);      
-//     res.send();
-//   }
-
-//   console.log("updated!");
-//   res.send({status: 'ok'});
-// });
-// });
 
 router.get('/getComments', function(req, res, next) {
   
@@ -245,7 +231,6 @@ router.get('/getComments', function(req, res, next) {
         res.status(400);      
         res.send();
       }
-      console.log("returning all the comments for the specific posts");
       res.send(comments);
     })
   });
@@ -280,8 +265,6 @@ router.get('/getPostByID', function(req, res, next) {
         res.send();
       }
   
-      console.log(posts);
-      console.log("returning all the posts.");
       res.send(posts);
     })
   });

@@ -1,21 +1,47 @@
-import { AppPage } from './app.po';
+import { AppPage, CommentsPage, registerPage } from './app.po';
 import {Postapp} from './app.po';
 import { browser } from 'protractor';
 
 describe('mean-frontend App', () => {
   let page: AppPage;
   let page1: Postapp;
+  let page2: CommentsPage;
+  let page3: registerPage;
 
   beforeEach(() => {
     page1=new Postapp();
     page = new AppPage();
+    page2=new CommentsPage();
+    page3=new registerPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to My ReDDit app!');
+    expect(page.getParagraphText()).toEqual('My ReDDit app!');
+  });
+  it('should click on signup button', () => {
+    page.navigateTo();
+    var input1=page.checksignupbutton();
+    input1.click();
   });
   
+  it('should register the user',()=>{
+      page3.navigateTo();
+      var input1=page3.insertusername();
+      var input2=page3.insertpwd1();
+      var input3=page3.insertpwd2();
+      var input4=page3.insertemail();
+      var input5=page3.pressb();
+      input1.click();
+      input1.sendKeys("newuser");
+      input2.click();
+      input2.sendKeys("abcpwd");
+      input3.click();
+      input3.sendKeys("abcpwd");
+      input4.click();
+      input4.sendKeys("newemail@gmail.com");
+      input5.click();
+  });
   it("should check whether the login form is submitting",()=>{
     page.navigateTo();
     var input1=page.checkloginform();
@@ -32,64 +58,64 @@ describe('mean-frontend App', () => {
  
  
   it('should allow to open navigation bar using fab',()=>{
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
   });
   it('should allow to navigate using all button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkallbutton();
+    var input2=page1.checkallbutton();
     input2.click();
   });
   it('should allow to navigate using random button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkrandombutton();
+    var input2=page1.checkrandombutton();
     input2.click();
   });
   it('should allow to navigate using science button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checksciencebutton();
+    var input2=page1.checksciencebutton();
     input2.click();
   });
   it('should allow to navigate using funny button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkfunnybutton();
+    var input2=page1.checkfunnybutton();
     input2.click();
   });
   it('should allow to navigate using math button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkmathbutton();
+    var input2=page1.checkmathbutton();
     input2.click();
   });
   it('should allow to navigate using popular button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkpopularbutton();
+    var input2=page1.checkpopularbutton();
     input2.click();
   });
   it('should allow to navigate using user button',()=>{
     //page.navigateTo();
-    page.navigateTo();
-    var input1=page.checknavigatebutton();
+    page1.navigateTo();
+    var input1=page1.checknavigatebutton();
     input1.click();
-    var input2=page.checkuserbutton();
+    var input2=page1.checkuserbutton();
     input2.click();
   });
   
@@ -108,11 +134,22 @@ describe('mean-frontend App', () => {
     input3.sendKeys("Third Subreddit test entry for demo");
     input4.click();
     input5.click();
-    browser.sleep(5000);
+    //browser.sleep(5000);
   });
-  // it('should click on the comment button',()=>{
-  //   page1.navigateTo();
-  //   var input1=page1.
+    // it('should click on the comment button',()=>{
+    //  page1.navigateTo();
+    //    var input1=page1.postcommentspage();
+    //    input1.click();
+    // });
+    // it('should check whether the comments are being inserted or not',()=>{
+    //   page2.navigateTo();
+    //     var input1=page2.getinputtxtc();
+    //     var input2=page2.insertcommentspage();
+    //     input1.click();
+    //     input1.sendKeys("I love this post!!!!")
+    //     input2.click();
+    //  });
+
 
   // })
   // it('should login the user, insert the post, check every subreddit page and insert comments',()=>{
