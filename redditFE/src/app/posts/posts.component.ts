@@ -5,6 +5,7 @@ import { PostService} from '../services/posts.service';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
+  styleUrls: ['./posts.component.css']
 })
 export class PostComponent implements OnInit {
 
@@ -76,7 +77,8 @@ export class PostComponent implements OnInit {
              var newPost = new Post(element._id, 
                                 element.title, 
                                 element.text,
-                                element.subreddit);
+                                element.subreddit,
+                              element.imageurl);
              this.posts.push(newPost);
            })
       })
@@ -88,6 +90,6 @@ export class PostComponent implements OnInit {
    }
 
   setEditPost(post: Post){
-    this.editPost = new Post(post._id, post.title, post.text, post.subreddit);
+    this.editPost = new Post(post._id, post.title, post.text, post.subreddit,post.imageurl);
   }
 }
