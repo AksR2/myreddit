@@ -4,7 +4,6 @@ import { Location } from '@angular/common';
 
 import { SubredditPost } from '../model/subreddit';
 import { PostService} from '../services/posts.service';
-import { VoteService } from '../services/vote.service';
 
 
 @Component({
@@ -23,7 +22,6 @@ export class SubredditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postService: PostService,
-    private voteService: VoteService
     //private location: Location
   ) {}
 
@@ -60,17 +58,6 @@ export class SubredditComponent implements OnInit {
    setEditPost(post: SubredditPost){
     this.editPost = new SubredditPost(post._id, post.user_name, post.title, post.text, post.total_votes, post.subreddit_cat);
   }
-
-  upvote(post: SubredditPost){
-    this.voteService.upvote(post)
-    .subscribe(
-      data=> {
-        post.total_votes = data;
-      }
-    )
-  }
-
-
   // goBack(): void {
   //   this.location.back();
   // }
