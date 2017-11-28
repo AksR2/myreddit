@@ -11,7 +11,6 @@ import { PostComponent } from './posts/posts.component';
 import { SubredditComponent } from './subreddit/subreddit.component';
 import { PostService } from './services/posts.service';
 import { LoginComponent} from './login/login.component';
-import { RegisteruserComponent } from './registeruser/registeruser.component';
 import {MatToolbarModule} from '@angular/material';
 import { AppRoutingModule }     from './app-routing.module';
 import { UserService } from './services/user.service';
@@ -22,7 +21,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 
 
-
 //import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -31,7 +29,7 @@ import {MatListModule} from '@angular/material/list';
     PostComponent,
     SubredditComponent,
     LoginComponent,
-    RegisteruserComponent,
+    
   ],
   imports: [
     BrowserModule,

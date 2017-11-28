@@ -6,7 +6,6 @@ var postSchema = new Schema({
   title: String,
   text: String,
   subreddit: String,
-  imageurl: String
   //location: String
 });
 
